@@ -1,9 +1,25 @@
-# LLM Chatbot
+# Kenyan AI Advisory Services
 
-The LLM Chatbot example demonstrates how an ICP smart contract can be used to interact with a large language model (LLM) to generate text. The user can input a prompt, and the smart contract will use the LLM to generate a response.
-The response is then returned to the user, and the user can submit some follow-up prompts to continue the conversation.
+![Project Banner](https://example.com/path-to-your-banner-image.png)
 
-This application's logic is written in [Motoko](https://internetcomputer.org/docs/motoko/main/getting-started/motoko-introduction), a programming language designed specifically for developing canisters on ICP.
+AI-powered chatbots providing agricultural and legal advice tailored specifically for Kenya.
+
+## 🌟 Features
+
+### AgriBot
+- Crop disease diagnosis
+- Weather-based farming recommendations
+- Market price trends (KES)
+- Pest control solutions
+- Regional planting calendars
+
+### LegalBot
+- Land rights guidance
+- Document preparation assistance
+- Legal procedure explanations
+- Kenyan law references
+- Dispute resolution basics
+g language designed specifically for developing canisters on ICP.
 
 ## Deploying from ICP Ninja
 
