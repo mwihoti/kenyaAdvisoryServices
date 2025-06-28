@@ -49,7 +49,7 @@ const Legalbot = () => {
       updateSession(botType, currentSession.id, updatedMessages);
     } catch (err) {
       console.error(err);
-      const updatedMessages = [...messages];
+      const updatedMessages = [...messages];                                                
       updatedMessages.pop(); // Remove loading message
       updatedMessages.push({ 
         system: { 

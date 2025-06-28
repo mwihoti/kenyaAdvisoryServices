@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useChatContext, ChatHistory, ChatHistoryOverlay } from './ChatManager';
+import { backend } from 'declarations/backend';
 
 const Agribot = () => {
   const { 
@@ -32,11 +33,16 @@ const Agribot = () => {
 
   const sendMessage = async (messages) => {
     try {
-      // Mock backend call - replace with actual backend call
-      // const response = await agribot.chat(messages);
+      // Extract only user messages for backend - the backend will handle system messages internally
+      const userMessages = messages.slice(1).filter(msg => 'user' in msg || ('system' in msg && msg.system.
+        content !== 'Analyzing your agricultural question...'));
       
-      // Simulated response for demo
-      const response = "I'm here to help with your agricultural questions! This is a simulated response. Please connect to your actual backend service.";
+      // Convert to backend format - just send user messages, let backend handle system prompts
+     // const backendMessages = userMessages.map(msg => ({
+       // user: { content: msg.user.content }
+      //}));
+      
+      const response = await backend.chat(userMessages);
       
       const updatedMessages = [...messages];
       updatedMessages.pop(); // Remove loading message
@@ -54,7 +60,7 @@ const Agribot = () => {
       updatedMessages.pop(); // Remove loading message
       updatedMessages.push({ 
         system: { 
-          content: "Sorry, I encountered an error. Please try again.",
+          content: "Sorry, I encountered an error processing your agricultural question. Please try again.",
           timestamp: new Date()
         }
       });
@@ -76,7 +82,7 @@ const Agribot = () => {
     };
     const loadingMessage = { 
       system: { 
-        content: 'Thinking...',
+        content: 'Analyzing your agricultural question...',
         timestamp: new Date()
       }
     };
@@ -196,7 +202,7 @@ const Agribot = () => {
             onKeyPress={(e) => e.key === 'Enter' && handleSubmit(e)}
             placeholder="Ask about Kenyan agriculture..."
             disabled={isLoading}
-            className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
+            className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-not-allowed"
           />
           <button
             onClick={handleSubmit}
@@ -206,7 +212,7 @@ const Agribot = () => {
             {isLoading ? (
               <>
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                <span>Sending...</span>
+                <span>Thinking...</span>
               </>
             ) : (
               <>

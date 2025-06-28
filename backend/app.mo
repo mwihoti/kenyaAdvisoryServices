@@ -24,7 +24,8 @@ persistent actor {
         if (Text.contains(content, #text "crop") or
             Text.contains(content, #text "farm") or
             Text.contains(content, #text "maize") or
-            Text.contains(content, #text "tea") or
+            Text.contains(content, #text "farmer") or
+            Text.contains(content, #text "plant") or
             Text.contains(content, #text "agriculture") or
             Text.contains(content, #text "livestock")) {
           "agriculture";
